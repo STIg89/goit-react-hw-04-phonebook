@@ -7,6 +7,7 @@ import { ContactFilter } from 'components/ContactFilter/ContactFilter';
 import { Wrapper } from './Phonebook.styled';
 import {
   Notification,
+  noContactsNotify,
   noMatchesNotify,
 } from 'components/Notification/Notification';
 
@@ -25,6 +26,9 @@ export const Phonebook = () => {
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
+    if (contacts.length === 0) {
+      noContactsNotify();
+    }
   }, [contacts]);
 
   const handleAddContact = ({ name, number }) => {
@@ -65,7 +69,7 @@ export const Phonebook = () => {
   return (
     <Wrapper>
       <Section title="Phonebook">
-        <ContactForm onFormSubmit={handleAddContact} />
+        <ContactForm onSubmitForm={handleAddContact} />
       </Section>
       <Section title="Contacts">
         <ContactFilter value={filter} onFilterChange={handleFilter} />
