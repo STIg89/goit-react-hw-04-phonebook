@@ -18,8 +18,8 @@ const initialLocalStorage = [
 ];
 
 export const Phonebook = () => {
-  const [contacts, setContacts] = useState(() =>
-    JSON.parse(localStorage.getItem('contacts') ?? initialLocalStorage)
+  const [contacts, setContacts] = useState(
+    () => JSON.parse(localStorage.getItem('contacts')) ?? initialLocalStorage
   );
   const [filter, setFilter] = useState('');
 
